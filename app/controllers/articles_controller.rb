@@ -1,3 +1,4 @@
+require 'kramdown'
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :update, :edit, :destroy]
 
@@ -12,10 +13,15 @@ class ArticlesController < ApplicationController
   def create
     article = Article.new(article_params)
     article.save
+
     redirect_to articles_path
+
   end
 
   def show
+
+    @test = Kramdown::Document.new(@article.content)
+
   end
 
   def edit
